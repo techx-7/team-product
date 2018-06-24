@@ -11,9 +11,9 @@ class FilterProduct extends React.Component {
         const { catCount, dogCount, otherCount } = this.props;
         return (
             <ListGroup>
-                <ListGroupItem>Cats<Badge color="primary" pill>{catCount}</Badge></ListGroupItem>
-                <ListGroupItem>Dogs<Badge color="primary" pill>{dogCount}</Badge></ListGroupItem>
-                <ListGroupItem>Others<Badge color="primary" pill>{otherCount}</Badge></ListGroupItem>
+                <ListGroupItem>Cats &nbsp;<Badge color="primary" pill>{catCount}</Badge></ListGroupItem>
+                <ListGroupItem>Dogs &nbsp;<Badge color="primary" pill>{dogCount}</Badge></ListGroupItem>
+                <ListGroupItem>Others &nbsp;<Badge color="primary" pill>{otherCount}</Badge></ListGroupItem>
             </ListGroup>
         );
     }
