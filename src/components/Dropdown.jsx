@@ -18,7 +18,7 @@ class Dropdown extends React.Component {
     }
 
     render() {
-        const { items, name, onItemClick } = this.props;
+        const { items, name, onItemClick, color = 'primary' } = this.props;
 
         const templates = items.map((item, idx) => {
             return (
@@ -29,7 +29,7 @@ class Dropdown extends React.Component {
         })
         return (
             <DropdownComponent isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle caret color="primary">
+                <DropdownToggle caret color={color}>
                     {name}
                 </DropdownToggle>
                 <DropdownMenu>

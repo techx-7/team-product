@@ -11,8 +11,8 @@ class ProductListComponent extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
-
+    handleClick(item) {
+        console.log("Selected Item", item)
     }
 
     render() {

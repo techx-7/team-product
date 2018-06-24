@@ -12,43 +12,80 @@ const apiUrl = 'https://fifi-pet-shop-api.herokuapp.com/api/products'
 class ProductListContainer extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+
+        this.state = {
+            searchTerm: ''
+        }
     }
 
-    componentDidMount() { }
+    componentWillMount() {
+        window.addEventListener('message', this.receiveSearchTermFromParent.bind(this), false);
+    }
+
+    componentDidMount() {
+        const data = {
+            type: 'INTIAL_HANDSHAKE',
+            msg: 'Product Listing Component has been initialized and rendered'
+        }
+        window.parent.postMessage(JSON.stringify(data), '*')
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('message');
+    }
+
+    parseJson(str) {
+        try {
+            return JSON.parse(str);
+        }
+        catch (e) {
+            return str;
+        }
+    }
+
+    receiveSearchTermFromParent({ data }) {
+        const searchData = this.parseJson(data);
+        if (!!searchData)
+            this.setState(searchData['data'])
+    }
 
     render() {
         const params = {};
         const sortByList = [{
-            text: 'View',
-            value: 'view'
+            text: '10',
+            value: '10'
         }, {
-            text: 'Grid',
-            value: 'grid'
+            text: '25',
+            value: '25'
+        }, {
+            text: '50',
+            value: '50'
         }];
 
         return (
             <Container>
                 <Row>
-                    <Col sm="3" xs="12">
+                    <Col md="3" sm="12">
                         <Row>
-                            <Col xs="12">&nbsp;</Col>
+                            <Col sm="12">&nbsp;</Col>
                         </Row>
                         <Row>
-                            <Col xs="12">
+                            <Col sm="12">
                                 <FilterProduct />
                             </Col>
                         </Row>
                     </Col>
-                    <Col sm="9" xs="12" >
+                    <Col md="9" sm="12" >
                         <Row>
-                            <Col xs="12">
-                                <Dropdown items={sortByList} name="View By" onItemClick={(e) => {
+                            <Col sm="12">
+                                <Dropdown style={{ float: 'right' }} color="default" items={sortByList} name="Page Size" onItemClick={(e) => {
                                     console.log(e)
                                 }} />
                             </Col>
                         </Row>
                         <div className="clearfix">&nbsp;</div>
+                        <h3>Search For {this.state.searchTerm}</h3>
                         <Get url={apiUrl} data={params}>
                             {(error, response, isLoading, onReload) => {
                                 if (error) {
