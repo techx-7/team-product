@@ -59,7 +59,7 @@ class ProductListContainer extends React.Component {
 
     receiveSearchTermFromParent({ data }) {
         const searchData = this.parseJson(data);
-        if (!!searchData && searchData['type'] == 'PRODUCT_SEARCH') {
+        if (!!searchData && searchData['type'] === 'PRODUCT_SEARCH') {
             const params = {
                 start: 0,
                 end: 10,
@@ -88,11 +88,6 @@ class ProductListContainer extends React.Component {
     }
 
     render() {
-        const params = {
-            start: 0,
-            end: 10,
-            q: this.state.searchTerm
-        };
         const sortByList = [{
             text: '10',
             value: '10'
@@ -106,7 +101,7 @@ class ProductListContainer extends React.Component {
 
         const catCount = (this.state.results.filter(item => item.category.name.toLowerCase().indexOf('cat') > -1) || []).length;
         const dogCount = (this.state.results.filter(item => item.category.name.toLowerCase().indexOf('dog') > -1) || []).length;
-        const otherCount = (this.state.results.filter(item => ['cat', 'dog'].indexOf(item.category.name.toLowerCase()) == -1) || []).length;
+        const otherCount = (this.state.results.filter(item => ['cat', 'dog'].indexOf(item.category.name.toLowerCase()) === -1) || []).length;
 
         return (
             <Container>

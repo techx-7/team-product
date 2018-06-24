@@ -3,10 +3,6 @@ import { ListGroup, ListGroupItem, Badge } from 'mdbreact'
 
 class FilterProduct extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { catCount, dogCount, otherCount } = this.props;
         return (

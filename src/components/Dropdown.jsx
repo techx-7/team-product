@@ -22,7 +22,7 @@ class Dropdown extends React.Component {
 
         const templates = items.map((item, idx) => {
             return (
-                <DropdownItem key={idx} href="javascript:void(0)" onClick={(e) => {
+                <DropdownItem key={idx} href="#!" onClick={(e) => {
                     onItemClick(item.value)
                 }}>{item.text}</DropdownItem>
             )

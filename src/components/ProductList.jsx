@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Row, Col } from 'mdbreact';
+import { Row, Col } from 'mdbreact';
 
 import Product from './Product';
 
@@ -16,7 +16,7 @@ class ProductListComponent extends React.Component {
     }
 
     render() {
-        const { items, estimate } = this.props;
+        const { items } = this.props;
 
         const template = items.map((item, key) => {
             return (

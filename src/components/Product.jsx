@@ -1,11 +1,7 @@
 import React from 'react';
-import { Card, CardImage, CardBody, CardTitle, CardText, CardFooter, Fa, Tooltip, Badge, Button } from 'mdbreact';
+import { Card, CardImage, CardBody, CardTitle, CardText, Fa } from 'mdbreact';
 
 class ProductComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { item, onSelection } = this.props;
         return (
@@ -16,8 +12,8 @@ class ProductComponent extends React.Component {
                     <CardTitle>{item.name}</CardTitle>
                     <hr />
                     <CardText>{item.desc || item.category.name}</CardText>
-                    <a href="javascript:void(0);" onClick={(e) => {
-                        e.stopPropagation(); 
+                    <a href="#!" onClick={(e) => {
+                        e.stopPropagation();
                         onSelection(item);
                     }} className="black-text d-flex justify-content-end"><h5>Read more <Fa icon="angle-double-right"></Fa></h5></a>
                 </CardBody>
